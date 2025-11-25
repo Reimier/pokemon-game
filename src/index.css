@@ -1,0 +1,60 @@
+
+body{
+
+    color: white;
+    font-family: 'Poppins', sans-serif;
+
+ width: 99%;
+  height: 100%;
+
+  background: #000000;
+  --gap: 5em;
+  --line: 1px;
+  --color: rgba(255, 255, 255, 0.2);
+
+  background-image: linear-gradient(
+      -90deg,
+      transparent calc(var(--gap) - var(--line)),
+      var(--color) calc(var(--gap) - var(--line) + 1px),
+      var(--color) var(--gap)
+    ),
+    linear-gradient(
+      0deg,
+      transparent calc(var(--gap) - var(--line)),
+      var(--color) calc(var(--gap) - var(--line) + 1px),
+      var(--color) var(--gap)
+    );
+  background-size: var(--gap) var(--gap);
+ 
+
+}
+
+#main-container{
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+#link-container {
+margin-right: px;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  font-size: 20px;
+}
+
+#link-container a {
+  text-decoration: none;
+  color: white;
+}
+
+#link-container a:hover,
+#link-container a.active {
+  text-decoration: underline;
+  text-decoration-color: white;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}
+

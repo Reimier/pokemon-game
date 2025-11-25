@@ -1,0 +1,27 @@
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 30px;
+}
+
+#brand-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+}
+
+#brand-container img {
+  border-radius: 40px;
+  height: 45px;
+}
+
+.Navbtn {
+  border-radius: 12px;
+  color: white;
+  background-color: #FF0000;
+  padding: 10px;
+}
+
