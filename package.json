@@ -1,6 +1,7 @@
 {
   "name": "game-pokemon",
   "private": true,
+  "homepage": "https://reimier.github.io/game-pokemon",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
