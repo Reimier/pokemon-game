@@ -1,5 +1,5 @@
 import NavBar from "./components/NavBar/NavBar";
-import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router";
 import PokemonCardEasy from "./components/PokemonCardEasy/PokemonCardEasy";
 import Contact from "./pages/Contact/Contact";
 import PokemonCardHard from "./components/PokemonCardHard/PokemonCardHard";
