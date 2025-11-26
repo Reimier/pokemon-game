@@ -19,7 +19,7 @@ export default function NavBar(){
 
                 <div className="NavbarBtn">
                 <NavLink to="/contact">
-                    <button className="Navbtn">Contact Developer</button>
+                    <button className="Navbtn">Contact Dev</button>
                 </NavLink>
                 </div>
 

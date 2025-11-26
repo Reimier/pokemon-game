@@ -22,6 +22,24 @@ nav {
   border-radius: 12px;
   color: white;
   background-color: #FF0000;
+  border-style: none;
   padding: 10px;
+  transition: 0.3s;
 }
 
+.Navbtn:hover{
+
+  background-color: #fb3535;
+
+}
+
+@media (max-width: 468px) {
+
+#brand-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+}
+
+}
