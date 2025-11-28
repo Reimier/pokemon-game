@@ -24,7 +24,7 @@ function PokemonCardNormal() {
   const handleGuess = () => {
     if (!pokemon) return;
 
-    if (guess.toLowerCase() === pokemon.name.toLowerCase()) {
+    if (guess.toLowerCase().trim()  === pokemon.name.toLowerCase()) {
 
       setStreak(prev => prev + 1);
       setMessage(`✅ Correct! It's ${pokemon.name}!`);
