@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import "./pokemon-card-normal.css";
+import "./pokemon-card-impossible.css";
 import { NavLink } from "react-router";
 
-function PokemonCardNormal() {
+function PokemonCardImpossible() {
 
   const [pokemon, setPokemon] = useState(null);
   const [guess, setGuess] = useState("");
   const [message, setMessage] = useState("");
-  const [streak, setStreak] = useState(0);
+    const [streak, setStreak] = useState(0);
   const [revealed, setRevealed] = useState(false);
 
   useEffect(() => {
@@ -25,13 +25,12 @@ function PokemonCardNormal() {
     if (!pokemon) return;
 
     if (guess.toLowerCase().trim()  === pokemon.name.toLowerCase()) {
-
       setStreak(prev => prev + 1);
       setMessage(`✅ Correct! It's ${pokemon.name}!`);
       setRevealed(true);
 
     } else {
-
+      
       setMessage("❌ Wrong! Try again.");
       setRevealed(false);
     }
@@ -53,23 +52,23 @@ function PokemonCardNormal() {
   };
 
   return (
-    <div id="pokemon-container2">
+    <div id="pokemon-container4">
       {pokemon && (
-        <div className="pokemon-card2">
+        <div className="pokemon-card4">
 
         <p>STREAK: 🔥{streak}</p>
 
-        <div id="link-container" >
+          <div id="link-container" >
             <NavLink to="/easy" onClick={() => setOpen(false)}>Easy</NavLink>
             <NavLink to="/normal" onClick={() => setOpen(false)}>Normal</NavLink>
             <NavLink to="/hard" onClick={() => setOpen(false)}>Hard</NavLink>
             <NavLink to="/impossible" onClick={() => setOpen(false)}>Impossible</NavLink>
           </div> 
 
-            <img 
-              src={pokemon.sprites.back_default} 
+            <img
+              src={pokemon.sprites.back_default}
               alt={pokemon.name} 
-              className="pokemon-image"
+              className={`pokemon-image ${revealed ? "" : "silhouette"}`}
             />
 
           <input
@@ -79,15 +78,15 @@ function PokemonCardNormal() {
             onChange={(e) => setGuess(e.target.value)}
           />
 
-        <div id="card-btn2"> 
-          <button onClick={handleGuess} disabled={revealed} >Submit</button>
-          <button onClick={skip} disabled={revealed} >Skip It</button>
+        <div id="card-btn4">
+          <button onClick={handleGuess} disabled={revealed}>Submit</button>
+          <button onClick={skip} disabled={revealed}>Skip It</button>
         </div>
 
           <p>{message}</p>
 
           {revealed && (  
-              <button id="next1" onClick={playAgain}>Next Pokemon!</button>
+              <button id="next4" onClick={playAgain}>Next Pokemon!</button>
           )}
 
         </div>
@@ -96,4 +95,4 @@ function PokemonCardNormal() {
   );
 }
 
-export default PokemonCardNormal;
+export default PokemonCardImpossible;

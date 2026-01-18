@@ -63,6 +63,7 @@ function PokemonCardEasy() {
             <NavLink to="/easy" onClick={() => setOpen(false)}>Easy</NavLink>
             <NavLink to="/normal" onClick={() => setOpen(false)}>Normal</NavLink>
             <NavLink to="/hard" onClick={() => setOpen(false)}>Hard</NavLink>
+            <NavLink to="/impossible" onClick={() => setOpen(false)}>Impossible</NavLink>
           </div> 
 
             <img 

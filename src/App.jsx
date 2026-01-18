@@ -4,6 +4,7 @@ import PokemonCardEasy from "./components/PokemonCardEasy/PokemonCardEasy";
 import Contact from "./pages/Contact/Contact";
 import PokemonCardHard from "./components/PokemonCardHard/PokemonCardHard";
 import PokemonCardNormal from "./components/PokemonCardNormal/PokemonCardNormal";
+import PokemonCardImpossible from "./components/PokemonCardImpossible/PokemonCardImpossible";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/easy" element={<PokemonCardEasy />} />
             <Route path="/normal" element={<PokemonCardNormal />} />
             <Route path="/hard" element={<PokemonCardHard />} />
+            <Route path="/impossible" element={<PokemonCardImpossible />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<PokemonCardEasy />} />
           </Routes>
