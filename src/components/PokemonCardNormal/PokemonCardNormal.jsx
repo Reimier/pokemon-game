@@ -80,14 +80,14 @@ function PokemonCardNormal() {
           />
 
         <div id="card-btn2"> 
-          <button onClick={handleGuess} disabled={revealed} >Submit</button>
-          <button onClick={skip} disabled={revealed} >Skip It</button>
+          <button onClick={handleGuess} disabled={revealed} ><i class="fa-solid fa-square-check"></i> Submit</button>
+          <button onClick={skip} disabled={revealed} ><i class="fa-solid fa-forward"></i> Skip It</button>
         </div>
 
           <p>{message}</p>
 
           {revealed && (  
-              <button id="next1" onClick={playAgain}>Next Pokemon!</button>
+              <button id="next2" onClick={playAgain}> <i class="fa-solid fa-circle-arrow-right"></i> Next Pokemon!</button>
           )}
 
         </div>

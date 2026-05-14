@@ -37,10 +37,10 @@ export default function Contact() {
         <label>Message</label>
         <textarea placeholder="What do you want to say?" name="message" rows="6" required></textarea>
 
-        <button className="submit-btn">Send Message</button>
+        <button className="submit-btn"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
 
         <NavLink to="/">
-        <button className="back-btn" >Go Back</button>
+        <button className="back-btn" ><i class="fa-solid fa-rotate-left"></i> Back</button>
         </NavLink> 
 
       </form>

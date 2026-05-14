@@ -18,6 +18,11 @@ nav {
   height: 45px;
 }
 
+#brand-container a {
+  text-decoration: none;
+  color: white;
+}
+
 .Navbtn {
   border-radius: 12px;
   color: white;
