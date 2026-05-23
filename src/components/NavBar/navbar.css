@@ -35,6 +35,7 @@ nav {
 .Navbtn:hover{
 
   background-color: #fb3535;
+  cursor: pointer;
 
 }
 
