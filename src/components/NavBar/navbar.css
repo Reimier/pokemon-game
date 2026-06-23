@@ -29,6 +29,8 @@ nav {
   background-color: #FF0000;
   border-style: none;
   padding: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
   transition: 0.3s;
 }
 
@@ -46,6 +48,12 @@ nav {
   align-items: center;
   gap: 10px;
   font-size: 12px;
+}
+
+.Navbtn {
+
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 }
