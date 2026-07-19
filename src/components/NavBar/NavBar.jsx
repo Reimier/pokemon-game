@@ -18,9 +18,14 @@ export default function NavBar(){
                 </div>
 
                 <div className="NavbarBtn">
+
+                <NavLink to="/login">
+                    <button className="Navbtn"> <i class="fa-solid fa-right-to-bracket"></i> Login </button>
+                </NavLink>
                 <NavLink to="/contact">
                     <button className="Navbtn"> <i class="fa-solid fa-phone"></i> Contact </button>
                 </NavLink>
+                
                 </div>
 
 

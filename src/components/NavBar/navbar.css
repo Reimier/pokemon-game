@@ -10,7 +10,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 15px;
+  font-size: 18px;
 }
 
 #brand-container img {
@@ -23,19 +23,26 @@ nav {
   color: white;
 }
 
+.NavbarBtn {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
 .Navbtn {
   border-radius: 12px;
   color: white;
   background-color: #FF0000;
   border-style: none;
-  padding: 10px;
-  padding-left: 30px;
-  padding-right: 30px;
+  font-weight: 900;
+  font-size: 14px;
+  padding: 10px 30px;
   transition: 0.3s;
 }
 
 .Navbtn:hover{
 
+  transform: scale(1.1);
   background-color: #fb3535;
   cursor: pointer;
 
@@ -50,8 +57,13 @@ nav {
   font-size: 12px;
 }
 
+#brand-container {
+  font-size: 12px;
+}
+
 .Navbtn {
 
+  font-size: 10px;
   padding-left: 20px;
   padding-right: 20px;
 }

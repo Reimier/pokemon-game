@@ -29,10 +29,10 @@ export default function Contact() {
 
       <form className="contact-form" onSubmit={sendEmail}>
         <label>Name</label>
-        <input placeholder="Enter your name" name="name" type="text" required />
+        <input placeholder="Juan Dela Cruz" name="name" type="text" required />
 
         <label>Email</label>
-        <input placeholder="Enter your email" name="email" type="email" required />
+        <input placeholder="your@email.com" name="email" type="email" required />
 
         <label>Message</label>
         <textarea placeholder="What do you want to say?" name="message" rows="6" required></textarea>
