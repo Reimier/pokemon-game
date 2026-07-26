@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./pokemon-card-easy.css";
 import { NavLink } from "react-router";
+import RankingCard from "../RankingCard/RankingCard";
 
 function PokemonCardEasy() {
 
@@ -92,6 +93,8 @@ function PokemonCardEasy() {
 
         </div>
       )}
+
+      <RankingCard></RankingCard>
     </div>
   );
 }

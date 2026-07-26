@@ -3,7 +3,8 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 30px;
+  padding: 30px 30px;
+  padding-bottom: 0;
 }
 
 #brand-container {
@@ -36,7 +37,7 @@ nav {
   border-style: none;
   font-weight: 900;
   font-size: 14px;
-  padding: 10px 30px;
+  padding: 10px 30px; 
   transition: 0.3s;
 }
 
@@ -48,7 +49,47 @@ nav {
 
 }
 
+@media (max-width: 1024px) {
+
+  
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 30px;
+  margin-bottom: 20px;
+}
+
+#brand-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+}
+
+#brand-container {
+  font-size: 12px;
+}
+
+.Navbtn {
+
+  font-size: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+}
+
 @media (max-width: 468px) {
+
+  
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 30px;
+  margin-bottom: 10px;
+}
 
 #brand-container {
   display: flex;
