@@ -1,6 +1,23 @@
-#pokemon-container2{
+#pokemon-container2 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+@media (max-width: 900px) {
+  #pokemon-container2 {
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.pokemon-card2 {
   width: 400px;
   height: 530px;
+  box-sizing: border-box;
   border-radius: 1rem;
   background: linear-gradient(43deg, #4158d0 0%, #c850c0 46%, #ffcc70 100%);
   background-size: 400% 400%;
@@ -15,6 +32,7 @@
     rgba(0, 0, 0, 0.09) 0px 16px 8px,
     rgba(0, 0, 0, 0.09) 0px 32px 16px;
   animation: gradientShift 5s ease infinite;
+  border: 1px solid #ffffff;
 
 }
 
@@ -96,8 +114,8 @@
 
 @media (max-width: 468px) {
 
-  #pokemon-container2 {
-    
+  .pokemon-card2 {
+
     margin-right: 10px;
     width: 320px;
     height: 525px;

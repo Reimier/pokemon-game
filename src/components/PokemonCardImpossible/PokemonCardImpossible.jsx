@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./pokemon-card-impossible.css";
 import { NavLink } from "react-router";
+import RankingCard from "../RankingCard/RankingCard";
 
 function PokemonCardImpossible() {
 
@@ -91,6 +92,8 @@ function PokemonCardImpossible() {
 
         </div>
       )}
+
+      <RankingCard></RankingCard>
     </div>
   );
 }

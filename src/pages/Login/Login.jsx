@@ -1,8 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import "./login.css";
 import { NavLink } from "react-router";
+import { auth } from "../../firebase.config";
+import { signInWithEmailAndPassword } from "@firebase/auth";
 
 export default function Login() {
+
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
+  
+    function loginUser()
+    {
+  
+      signInWithEmailAndPassword(auth, email, password).then(()=>{
+  
+        alert("Success Login");
+  
+      }).catch((error)=>{
+        alert(error.message);
+      }
+  
+      )
+  
+    }
+
   return (
     <div className="login-container">
       <div className="card">
@@ -15,6 +36,7 @@ export default function Login() {
             </p>
 
             <input
+            onChange={(e)=>setEmail(e.target.value)}
               type="email"
               className="input-field"
               placeholder="Email"
@@ -27,13 +49,14 @@ export default function Login() {
             </p>
 
             <input
+            onChange={(e)=>setPassword(e.target.value)}
               type="password"
               className="input-field"
               placeholder="Password"
             />
           </div>
 
-          <button className="btn" type="submit">
+          <button onClick={loginUser} className="btn" type="submit">
            <i class="fa-solid fa-right-to-bracket"></i> Login
           </button>
 

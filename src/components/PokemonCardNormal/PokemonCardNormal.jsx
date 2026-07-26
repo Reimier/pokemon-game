@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./pokemon-card-normal.css";
 import { NavLink } from "react-router";
+import RankingCard from "../RankingCard/RankingCard";
 
 function PokemonCardNormal() {
 
@@ -92,6 +93,8 @@ function PokemonCardNormal() {
 
         </div>
       )}
+
+      <RankingCard></RankingCard>
     </div>
   );
 }

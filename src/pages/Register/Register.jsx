@@ -1,8 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import "./register.css";
 import { NavLink } from "react-router";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase.config";
 
 export default function Register() {
+
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
+  function registerUser()
+  {
+
+    createUserWithEmailAndPassword(auth, email, password).then(()=>{
+
+      alert("Success Registration");
+
+    }).catch((error)=>{
+      alert(error.message);
+    }
+
+    )
+
+  }
+
   return (
     <div className="register-container">
       <div className="register-card">
@@ -27,6 +48,7 @@ export default function Register() {
             </p>
 
             <input
+              onChange={(e)=>setEmail(e.target.value)}
               type="email"
               className="input-field"
               placeholder="Email"
@@ -39,13 +61,14 @@ export default function Register() {
             </p>
 
             <input
+              onChange={(e)=>setPassword(e.target.value)}
               type="password"
               className="input-field"
               placeholder="Password"
             />
           </div>
 
-          <button className="btn" type="submit">
+          <button onClick={registerUser} className="btn" type="submit">
            <i class="fa-solid fa-person-circle-plus"></i> Register
           </button>
 

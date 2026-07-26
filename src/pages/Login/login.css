@@ -43,19 +43,6 @@
    color: #f5f5f5;
   }
 
-  /*Buttons*/
-  .btn {
-   margin: 1rem;
-   border: none;
-   border-radius: 4px;
-   font-weight: bold;
-   font-size: .8em;
-   padding: 0.6em 1.2em;
-   background-color: #FF0000;
-   color: #ffffff;
-   transition: all .3s ease-in-out;
-  }
-
   .btn-link {
    color: #f5f5f5;
    display: block;
@@ -69,10 +56,19 @@
    transition: opacity .3s;
   }
 
+  
+  .btn {
+   background-color: #FF0000;
+    color: #ffffff;
+    margin-bottom: 15px;
+   transition: 0.3s;
+  }
+
+
   .btn:hover {
    background-color: #FF0000;
    color: #ffffff;
-   transform: scale(1.1);
+   transform: scale(1.05);
   }
 
   .btn-link:hover {
