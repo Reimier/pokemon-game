@@ -42,6 +42,7 @@ function App() {
             {/* public */}
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<Navigate to={"/register"}/>} />
             </>
             }
