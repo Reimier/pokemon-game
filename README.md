@@ -1,5 +1,10 @@
 # React + Vite
 
+### Disclaimer
+This is an unofficial, open-source fan project created solely for educational and portfolio purposes. 
+All Pokémon names, images, and character assets belong to Nintendo, Game Freak, and The Pokémon Company. 
+This project is not affiliated with or endorsed by Nintendo. Data powered by PokéAPI.
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
