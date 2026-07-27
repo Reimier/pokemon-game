@@ -2,9 +2,15 @@ import { useEffect, useState } from "react";
 import "./pokemon-card-easy.css";
 import { NavLink } from "react-router";
 import RankingCard from "../RankingCard/RankingCard";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../firebase.config";
+import { recordCorrectGuess, resetCurrentStreak } from "../../utils/streakService";
+
+const DIFFICULTY = "easy";
 
 function PokemonCardEasy() {
 
+  const [uid, setUid] = useState(null);
   const [pokemon, setPokemon] = useState(null);
   const [guess, setGuess] = useState("");
   const [message, setMessage] = useState("");
@@ -12,7 +18,9 @@ function PokemonCardEasy() {
   const [revealed, setRevealed] = useState(false);
 
   useEffect(() => {
+    const unsubAuth = onAuthStateChanged(auth, (u) => setUid(u ? u.uid : null));
     loadRandomPokemon();
+    return () => unsubAuth();
   }, []);
 
   const loadRandomPokemon = () => {
@@ -27,7 +35,11 @@ function PokemonCardEasy() {
 
     if (guess.toLowerCase().trim() === pokemon.name.toLowerCase()) {
 
-      setStreak(prev => prev + 1);
+      setStreak(prev => {
+        const next = prev + 1;
+        recordCorrectGuess(uid, DIFFICULTY, next);
+        return next;
+      });
       setMessage(`✅ Correct! It's ${pokemon.name}!`);
       setRevealed(true);
 
@@ -48,6 +60,7 @@ function PokemonCardEasy() {
     const skip = () => {
     setRevealed(false);
     setStreak(0);
+    resetCurrentStreak(uid, DIFFICULTY);
     setGuess("");
     setMessage("");
     loadRandomPokemon();
@@ -61,10 +74,10 @@ function PokemonCardEasy() {
         <p>STREAK: 🔥{streak}</p>
 
           <div id="link-container" >
-            <NavLink to="/easy" onClick={() => setOpen(false)}>Easy</NavLink>
-            <NavLink to="/normal" onClick={() => setOpen(false)}>Normal</NavLink>
-            <NavLink to="/hard" onClick={() => setOpen(false)}>Hard</NavLink>
-            <NavLink to="/impossible" onClick={() => setOpen(false)}>Impossible</NavLink>
+            <NavLink to="/easy">Easy</NavLink>
+            <NavLink to="/normal">Normal</NavLink>
+            <NavLink to="/hard">Hard</NavLink>
+            <NavLink to="/impossible">Impossible</NavLink>
           </div> 
 
             <img 

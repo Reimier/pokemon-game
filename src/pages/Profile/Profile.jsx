@@ -2,32 +2,39 @@ import { useEffect, useState } from "react";
 import "./profile.css";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../../firebase.config";
-import { onValue, ref, set } from "firebase/database";
+import { ref, update } from "firebase/database";
+import { EMPTY_STREAKS, subscribeUserData } from "../../utils/streakService";
 
 export default function Profile() {
 
     const [user, setUser] = useState();
     const [userData, setUserData] = useState();
     const [userName, setUserName] = useState();
-  
+
     useEffect(()=>{
-  
-      onAuthStateChanged(auth, (u)=>{
+
+      const unsubAuth = onAuthStateChanged(auth, (u)=>{
 
         if(u){
           setUser(u);
-
-          onValue(ref(db, `users/${u.uid}`), (snapshot) => {
-            const data = snapshot.val();
-
-            setUserData(data);
-            setUserName(data.userName);
-          });
         }
 
       })
-  
+
+      return () => unsubAuth();
+
     }, [])
+
+    useEffect(() => {
+      if (!user) return;
+
+      const unsubData = subscribeUserData(user.uid, (data) => {
+        setUserData(data);
+        setUserName(data?.userName || "");
+      });
+
+      return () => unsubData();
+    }, [user]);
 
     function save() {
       if (!userName.trim()) {
@@ -35,8 +42,9 @@ export default function Profile() {
         return;
       }
 
-      set(ref(db, `users/${user.uid}`), {
-        userName,
+      // Only touch the username field so streak / ranking data is preserved.
+      update(ref(db, `users/${user.uid}`), {
+        userName: userName.trim(),
       })
         .then(() => alert("Profile updated!"))
         .catch((err) => console.log(err));
@@ -50,6 +58,15 @@ export default function Profile() {
 
       )
     }
+
+    const highestStreaks = userData?.highestStreaks || EMPTY_STREAKS;
+    const highestStreak = Math.max(
+      highestStreaks.easy || 0,
+      highestStreaks.normal || 0,
+      highestStreaks.hard || 0,
+      highestStreaks.impossible || 0
+    );
+    const highestRanking = userData?.bestRank ? `#${userData.bestRank}` : "—";
 
   return (
     <div className="profile-container">
@@ -76,11 +93,11 @@ export default function Profile() {
 
         <div className="profile-stats">
           <div className="stat">
-            <span className="stat-value">128</span>
+            <span className="stat-value">{highestStreak}</span>
             <span className="stat-label">Highest Streak</span>
           </div>
           <div className="stat">
-            <span className="stat-value">42</span>
+            <span className="stat-value">{highestRanking}</span>
             <span className="stat-label">Highest Ranking</span>
           </div>
         </div>

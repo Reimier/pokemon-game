@@ -2,9 +2,15 @@ import { useEffect, useState } from "react";
 import "./pokemon-card-impossible.css";
 import { NavLink } from "react-router";
 import RankingCard from "../RankingCard/RankingCard";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../firebase.config";
+import { recordCorrectGuess, resetCurrentStreak } from "../../utils/streakService";
+
+const DIFFICULTY = "impossible";
 
 function PokemonCardImpossible() {
 
+  const [uid, setUid] = useState(null);
   const [pokemon, setPokemon] = useState(null);
   const [guess, setGuess] = useState("");
   const [message, setMessage] = useState("");
@@ -12,7 +18,9 @@ function PokemonCardImpossible() {
   const [revealed, setRevealed] = useState(false);
 
   useEffect(() => {
+    const unsubAuth = onAuthStateChanged(auth, (u) => setUid(u ? u.uid : null));
     loadRandomPokemon();
+    return () => unsubAuth();
   }, []);
 
   const loadRandomPokemon = () => {
@@ -26,12 +34,16 @@ function PokemonCardImpossible() {
     if (!pokemon) return;
 
     if (guess.toLowerCase().trim()  === pokemon.name.toLowerCase()) {
-      setStreak(prev => prev + 1);
+      setStreak(prev => {
+        const next = prev + 1;
+        recordCorrectGuess(uid, DIFFICULTY, next);
+        return next;
+      });
       setMessage(`✅ Correct! It's ${pokemon.name}!`);
       setRevealed(true);
 
     } else {
-      
+
       setMessage("❌ Wrong! Try again.");
       setRevealed(false);
     }
@@ -47,6 +59,7 @@ function PokemonCardImpossible() {
     const skip = () => {
     setRevealed(false);
     setStreak(0);
+    resetCurrentStreak(uid, DIFFICULTY);
     setGuess("");
     setMessage("");
     loadRandomPokemon();
@@ -60,10 +73,10 @@ function PokemonCardImpossible() {
         <p>STREAK: 🔥{streak}</p>
 
           <div id="link-container" >
-            <NavLink to="/easy" onClick={() => setOpen(false)}>Easy</NavLink>
-            <NavLink to="/normal" onClick={() => setOpen(false)}>Normal</NavLink>
-            <NavLink to="/hard" onClick={() => setOpen(false)}>Hard</NavLink>
-            <NavLink to="/impossible" onClick={() => setOpen(false)}>Impossible</NavLink>
+            <NavLink to="/easy">Easy</NavLink>
+            <NavLink to="/normal">Normal</NavLink>
+            <NavLink to="/hard">Hard</NavLink>
+            <NavLink to="/impossible">Impossible</NavLink>
           </div> 
 
             <img
@@ -79,7 +92,7 @@ function PokemonCardImpossible() {
             onChange={(e) => setGuess(e.target.value)}
           />
 
-        <div id="card-btn4">
+        <div id="card-btn4"> 
           <button onClick={handleGuess} disabled={revealed} ><i class="fa-solid fa-square-check"></i> Submit</button>
           <button onClick={skip} disabled={revealed} ><i class="fa-solid fa-forward"></i> Skip It</button>
         </div>

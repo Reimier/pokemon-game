@@ -2,17 +2,30 @@ import React, { useState } from "react";
 import "./register.css";
 import { NavLink } from "react-router";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase.config";
+import { ref, set } from "firebase/database";
+import { auth, db } from "../../firebase.config";
+import { newUserRecord } from "../../utils/streakService";
 
 export default function Register() {
 
+  const [userName, setUserName] = useState("");
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
   function registerUser()
   {
+    if (!userName || !userName.trim()) {
+      alert("Please enter a username.");
+      return;
+    }
 
-    createUserWithEmailAndPassword(auth, email, password).then(()=>{
+    createUserWithEmailAndPassword(auth, email, password).then((credential) => {
+
+      const uid = credential.user.uid;
+
+      return set(ref(db, `users/${uid}`), newUserRecord(userName.trim(), email));
+
+    }).then(()=>{
 
       alert("Success Registration");
 
@@ -36,6 +49,7 @@ export default function Register() {
             </p>
 
             <input
+              onChange={(e)=>setUserName(e.target.value)}
               type="text"
               className="input-field"
               placeholder="Username"
