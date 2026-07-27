@@ -1,20 +1,46 @@
 import { useEffect, useState } from "react";
 import "./profile.css";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../../firebase.config";
+import { auth, db } from "../../firebase.config";
+import { onValue, ref, set } from "firebase/database";
 
 export default function Profile() {
 
     const [user, setUser] = useState();
+    const [userData, setUserData] = useState();
+    const [userName, setUserName] = useState();
   
     useEffect(()=>{
   
       onAuthStateChanged(auth, (u)=>{
-        setUser(u);
+
+        if(u){
+          setUser(u);
+
+          onValue(ref(db, `users/${u.uid}`), (snapshot) => {
+            const data = snapshot.val();
+
+            setUserData(data);
+            setUserName(data.userName);
+          });
+        }
+
       })
   
+    }, [])
+
+    function save() {
+      if (!userName.trim()) {
+        alert("Username cannot be empty.");
+        return;
+      }
+
+      set(ref(db, `users/${user.uid}`), {
+        userName,
+      })
+        .then(() => alert("Profile updated!"))
+        .catch((err) => console.log(err));
     }
-    )
 
     function logout(){
 
@@ -35,9 +61,14 @@ export default function Profile() {
             <i className="fa-regular fa-circle-user"></i>
           </p>
 
-          {user &&
+          {user && userData &&
           <>
-          <span className="profile-name">{user.email}</span>
+            <input
+              type="text"
+              className="profile-name"
+              value={userName || ""}
+              onChange={(e) => setUserName(e.target.value)}
+            />
           </>
           }
           
@@ -54,7 +85,7 @@ export default function Profile() {
           </div>
         </div>
 
-        <button className="btn delete-btn" type="button">
+        <button onClick={(save)} className="btn delete-btn" type="button">
           <i class="fa-solid fa-floppy-disk"></i> Save edit
         </button>
 

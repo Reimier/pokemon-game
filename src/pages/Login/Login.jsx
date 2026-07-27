@@ -27,7 +27,7 @@ export default function Login() {
   return (
     <div className="login-container">
       <div className="card">
-        <h4 className="title">Log In!</h4>
+        <h4 className="title">Welcome Back!</h4>
 
         <form>
           <div className="field">
